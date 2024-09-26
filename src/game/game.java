@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -35,6 +36,8 @@ public class game extends Canvas implements Runnable {
     private static BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     private static int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
+    private static final ImageIcon icon = new ImageIcon(game.class.getResource("/resources/icon.png"));
+
     private game() {
         setPreferredSize(new Dimension(width, height));
 
@@ -47,6 +50,7 @@ public class game extends Canvas implements Runnable {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.setLayout(new BorderLayout());
+        window.setIconImage(icon.getImage());
         window.add(this, BorderLayout.CENTER);
         window.pack();
         window.setLocationRelativeTo(null);
@@ -76,7 +80,7 @@ public class game extends Canvas implements Runnable {
 
     }
 
-    private void update() {
+    public void update() {
         keyboard.update();
 
         if (keyboard.up) {
@@ -136,7 +140,7 @@ public class game extends Canvas implements Runnable {
             passedTime = bucleInit - updateReference;
             updateReference = bucleInit;
 
-            delta += passedTime / ns_per_seconds;
+            delta += passedTime / ns_per_update;
 
             while (delta >= 1) {
                 update();
