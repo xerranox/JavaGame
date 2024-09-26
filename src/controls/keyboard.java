@@ -28,6 +28,6 @@ public final class keyboard implements KeyListener {
     }
 
     public void keyTyped(KeyEvent e) {
-        
+
     }
 }

@@ -9,6 +9,11 @@ public final class sprite {
     public int[] pixels;
     private final spriteSheet sheet;
 
+    // SPRITES
+    public static sprite prueba2 = new sprite(64, 0, 0, spriteSheet.prueba);
+
+    // SPRITES END
+
     public sprite(final int side, final int column, final int row, final spriteSheet sheet) {
         this.side = side;
         pixels = new int[side * side];

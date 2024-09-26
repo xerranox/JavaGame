@@ -3,9 +3,13 @@ package game;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import javax.swing.JFrame;
-
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 import controls.keyboard;
+import graphics.screen;
 
 public class game extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
@@ -24,8 +28,17 @@ public class game extends Canvas implements Runnable {
     private static int ups = 0;
     private static int fps = 0;
 
+    private static int x = 0;
+    private static int y = 0;
+    private static screen screen;
+
+    private static BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+    private static int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
+
     private game() {
         setPreferredSize(new Dimension(width, height));
+
+        screen = new screen(width, height);
 
         keyboard = new keyboard();
         addKeyListener(keyboard);
@@ -67,22 +80,40 @@ public class game extends Canvas implements Runnable {
         keyboard.update();
 
         if (keyboard.up) {
-
+            y += 3;
         }
         if (keyboard.down) {
-            
+            y -= 3;
         }
         if (keyboard.left) {
-            
+            x += 3;
         }
         if (keyboard.right) {
-            
+            x -= 3;
         }
 
         ups++;
     }
 
     private void showGame() {
+        BufferStrategy strategy = getBufferStrategy();
+        if (strategy == null) {
+            createBufferStrategy(2);
+            return;
+        }
+
+        screen.clean();
+        screen.show(x, y);
+
+        System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
+
+        Graphics g = strategy.getDrawGraphics();
+
+        g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        g.dispose();
+
+        strategy.show();
+
         fps++;
     }
 
