@@ -24,7 +24,7 @@ public final class screen {
         }
     }
 
-    public void show(final int compensationX, final int compensationY) {
+    public void showGameScreen(final int compensationX, final int compensationY) {
         for (int y = 0; y < height; y++) {
             int positionY = y + compensationY;
             if (positionY < 0 || positionY >= height) {

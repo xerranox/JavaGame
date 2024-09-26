@@ -103,7 +103,7 @@ public class game extends Canvas implements Runnable {
         }
 
         screen.clean();
-        screen.show(x, y);
+        screen.showGameScreen(x, y);
 
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
 
