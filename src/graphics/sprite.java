@@ -10,7 +10,7 @@ public final class sprite {
     private final spriteSheet sheet;
 
     // SPRITES
-    public static sprite prueba2 = new sprite(64, 0, 0, spriteSheet.prueba);
+    public static sprite prueba2 = new sprite(64, 0, 0, spriteSheet.prueba); // SPRITE FROM TILESET
 
     // SPRITES END
 

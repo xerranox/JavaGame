@@ -7,7 +7,7 @@ public final class screen {
     public final int[] pixels;
 
     // TEMP
-    private final static int sprite_side = 64;
+    private final static int sprite_side = 64; // SPRITE SIZE
     private final static int sprite_mask = sprite_side - 1;
     // TEMP END
 

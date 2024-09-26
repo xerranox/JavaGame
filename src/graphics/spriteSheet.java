@@ -10,7 +10,7 @@ public class spriteSheet {
     public final int[] pixels;
 
     // SPRITES
-    public static spriteSheet prueba = new spriteSheet("/resources/textures/prueba.png", 64, 64);
+    public static spriteSheet prueba = new spriteSheet("/resources/textures/prueba.png", 64, 64); // TILESET
 
     // SPRITES END
 

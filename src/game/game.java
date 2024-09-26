@@ -2,6 +2,7 @@ package game;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
@@ -15,13 +16,15 @@ import graphics.screen;
 public class game extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
 
+    // WINDOW SIZE
     private static final int width = 800;
     private static final int height = 600;
+
     private static JFrame window;
 
     private static volatile boolean onPlaying = false;
 
-    private static final String name = "Game";
+    private static final String name = "Game"; // GAME NAME
     private static Thread thread;
 
     private static keyboard keyboard;
@@ -36,7 +39,7 @@ public class game extends Canvas implements Runnable {
     private static BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     private static int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
-    private static final ImageIcon icon = new ImageIcon(game.class.getResource("/resources/icon.png"));
+    private static final ImageIcon icon = new ImageIcon(game.class.getResource("/resources/icon.png")); // APP ICON
 
     private game() {
         setPreferredSize(new Dimension(width, height));
@@ -114,6 +117,8 @@ public class game extends Canvas implements Runnable {
         Graphics g = strategy.getDrawGraphics();
 
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        g.setColor(Color.white);
+        g.fillRect(width / 2, height / 2, 32, 32);
         g.dispose();
 
         strategy.show();
@@ -150,7 +155,7 @@ public class game extends Canvas implements Runnable {
             showGame();
 
             if (System.nanoTime() - counterReference > ns_per_seconds) {
-                window.setTitle(name + " || UPS: " + ups + " || FPS: " + fps);
+                window.setTitle(name + " || UPS: " + ups + " || FPS: " + fps); // WINDOW NAME
                 ups = 0;
                 fps = 0;
                 counterReference = System.nanoTime();
